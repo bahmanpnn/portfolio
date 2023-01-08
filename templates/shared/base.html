@@ -1,0 +1,29 @@
+<!--[if lt IE 7 ]>
+<html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% include 'shared/header_links.html' %}
+    {% block header_links %}
+
+    {% endblock %}
+    <title>{% block title %}title{% endblock %}</title>
+</head>
+<body>
+
+{% block content %}
+
+{% endblock %}
+{% include 'shared/footer_links.html' %}
+{% block footer_links %}
+
+{% endblock %}
+</body>
+</html>

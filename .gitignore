@@ -1,0 +1,5 @@
+venv/
+note.txt
+manage.py
+.gitignore
+.idea/
