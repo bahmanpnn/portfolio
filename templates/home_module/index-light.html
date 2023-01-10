@@ -117,8 +117,8 @@
                 <div class="cv__header">
                     <div class="in">
                         <div class="avatar">
-                            {% thumbnail user.avatar '200x200' as bahman %}
-                                <img src="{{ bahman.url }}" alt="">
+                            {% thumbnail user.avatar '175x175' crop='center' quality=95 as bahman %}
+                                <img style="border-radius: 3%;" src="{{ bahman.url }}" alt="">
                             {% endthumbnail %}
                         </div>
                         <h3><span>{{ user.first_name }}</span> {{ user.last_name }}</h3>
@@ -209,6 +209,15 @@
                                     </a>
                                 </li>
                             {% endif %}
+                            {% if user.github %}
+                                <li>
+                                    <a href="{{ user.github }}" target="_blank"
+                                       title="github.com">
+                                        <img class="fn__svg" src="/static/svg/github.svg"
+                                             alt="github.com"/>
+                                    </a>
+                                </li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
@@ -266,7 +275,7 @@
                                     <p>Languages:
                                         <span>
                                             {% for languege in langueges %}
-                                                {{ languege.title }}
+                                                {{ languege.title }}({{ languege.grade }})
                                                 {% if not forloop.last %}
                                                     ,
                                                 {% endif %}
@@ -279,8 +288,6 @@
                                 <li><p>Nationality: <span>
                                     {{ user.nationality|capfirst }}</span></p></li>
                                 <li><p>Adress: <span>{{ user.address }}</span></p></li>
-                                <li><p>Phone: <span>{{ user.phone }}</span></p>
-                                </li>
                             </ul>
                         </div>
                     </section>
@@ -428,10 +435,10 @@
                                     {% for portfolio in portfolios %}
                                         <li class="youtube grid-item">
                                             <div class="inner">
-                                                <div class="entry">
-                                                    <a
-                                                            href="{{ portfolio.project_url }}">
-                                                        {% thumbnail portfolio.project_image '50x50' as bahman %}
+                                                <div class="entry" style="border:3px solid
+                                                #a8a4a4;">
+                                                    <a href="{{ portfolio.project_url }}">
+                                                        {% thumbnail portfolio.project_image '85x85' crop='center' as bahman %}
                                                             <img src="{{ bahman.url }}" alt=""/>
                                                         {% endthumbnail %}
                                                         <div class="main"
@@ -507,6 +514,7 @@
                         <form class="contact_form" action="{% url 'home_page_light' %}"
                               method="post"
                               autocomplete="off">
+                            {% csrf_token %}
 
                             <!--
                                 Don't remove below code in avoid to work contact form properly.
@@ -550,7 +558,7 @@
                                         </div>
                                     </div>
                                     <div class="item">
-                                        <button type="submit" id="send_message">Send
+                                        <button type="submit" id="send__message">Send
                                             Message
                                         </button>
                                         {#                                        <a id="send_message" href="#">Send Message</a>#}

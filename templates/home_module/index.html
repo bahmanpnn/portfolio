@@ -88,8 +88,8 @@
                 <div class="cv__header">
                     <div class="in">
                         <div class="avatar">
-                            {% thumbnail user.avatar '200x200' as bahman %}
-                                <img src="{{ bahman.url }}" alt="">
+                            {% thumbnail user.avatar '175x175' crop='center' quality=95 as bahman %}
+                                <img style="border-radius: 3%;" src="{{ bahman.url }}" alt="">
                             {% endthumbnail %}
                         </div>
                         <h3><span>{{ user.first_name }}</span> {{ user.last_name }}</h3>
@@ -180,6 +180,15 @@
                                     </a>
                                 </li>
                             {% endif %}
+                            {% if user.github %}
+                                <li>
+                                    <a href="{{ user.github }}" target="_blank"
+                                       title="github.com">
+                                        <img class="fn__svg" src="/static/svg/github.svg"
+                                             alt="github.com"/>
+                                    </a>
+                                </li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
@@ -237,7 +246,7 @@
                                     <p>Languages:
                                         <span>
                                             {% for languege in langueges %}
-                                                {{ languege.title }}
+                                                {{ languege.title }}({{ languege.grade }})
                                                 {% if not forloop.last %}
                                                     ,
                                                 {% endif %}
@@ -250,8 +259,6 @@
                                 <li><p>Nationality: <span>
                                     {{ user.nationality|capfirst }}</span></p></li>
                                 <li><p>Adress: <span>{{ user.address }}</span></p></li>
-                                <li><p>Phone: <span>{{ user.phone }}</span></p>
-                                </li>
                             </ul>
                         </div>
                     </section>
@@ -325,7 +332,7 @@
                                 <div class="progress_item"
                                      data-value="{{ skill.knowledge_percent_skill }}">
                                     <div class="item_in">
-                                        <h3 class="progress_title">{{ skill.skill_name }}</h3>
+                                        <h3 class="progress_title">{{ skill.skill_name|upper }}</h3>
                                         <span class="progress_percent"></span>
                                         <div class="progress_bg"></div>
                                     </div>
@@ -384,11 +391,12 @@
                             <div class="portfolio_list">
                                 <ul class="gallery_zoom grid">
                                     {% for portfolio in portfolios %}
-                                        <li class="youtube grid-item">
-                                            <div class="inner">
-                                                <div class="entry">
+                                        <li class="youtube grid-item" >
+                                            <div class="inner" >
+                                                <div class="entry" style="border:3px solid
+                                                #242424;" >
                                                     <a href="{{ portfolio.project_url }}">
-                                                        {% thumbnail portfolio.project_image '50x50' as bahman %}
+                                                        {% thumbnail portfolio.project_image '85x85' crop='center' as bahman %}
                                                             <img src="{{ bahman.url }}" alt=""/>
                                                         {% endthumbnail %}
                                                         <div class="main"
@@ -430,9 +438,6 @@
                                                 {% thumbnail client.client_image '75x100' as bahman %}
                                                     <img src="{{ bahman.url }}" alt=""/>
                                                 {% endthumbnail %}
-                                                {#                                                <span style="color: white;">#}
-                                                {#                                                    {{ client.client_name }}#}
-                                                {#                                                </span>#}
                                             </a>
 
                                         </li>
@@ -451,6 +456,7 @@
                         <form class="contact_form" action="{% url 'home_page_dark' %}"
                               method="post"
                               autocomplete="off">
+                            {% csrf_token %}
 
                             <!--
                                 Don't remove below code in avoid to work contact form properly.
@@ -493,11 +499,18 @@
                                             {{ form.text.errors }}
                                         </div>
                                     </div>
-                                    <div class="item">
-                                        <button type="submit" id="send_message">Send
-                                            Message
+                                    <div>
+                                        <button type="submit" id="send__message_dark"
+                                                style="line-height: 26px;padding: 20px;
+                                                border-radius: 50px;align-items:center;
+                                                width: 100%;
+                                                font-size: 14px;letter-spacing: 0.5px;
+                                                text-transform: uppercase;color:#cdcdcd;
+                                                background-color:#232222;
+                                                border-color: #3e3d3d;font-family: 'sans-serif';">
+                                            Send Message
                                         </button>
-                                        {#                                        <a id="send_message" href="#">Send Message</a>#}
+                                        {#                                                                                <a id="send_message" href="#">Send Message</a>#}
                                     </div>
                                 </div>
                             </div>

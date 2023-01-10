@@ -36,7 +36,7 @@ class IndexPage(View):
     def post(self, request):
         form = ContactForm(request.POST)
         if form.is_valid():
-            fullname = form.cleaned_data.get('fullname')
+            fullname = form.cleaned_data.get('name')
             email = form.cleaned_data.get('email')
             phone_number = form.cleaned_data.get('phone')
             text = form.cleaned_data.get('text')
@@ -79,7 +79,7 @@ class IndexPageLight(View):
     def post(self, request):
         form = ContactForm(request.POST)
         if form.is_valid():
-            fullname = form.cleaned_data.get('fullname')
+            fullname = form.cleaned_data.get('name')
             email = form.cleaned_data.get('email')
             phone_number = form.cleaned_data.get('phone')
             text = form.cleaned_data.get('text')
@@ -88,9 +88,8 @@ class IndexPageLight(View):
                                phone=phone_number,
                                text=text)
             new_form.save()
-            return redirect(reverse('home_page_dark'))
+            return redirect(reverse('home_page_light'))
         context = {
             'form': form
         }
         return render(request, 'home_module/index-light.html', context)
-
