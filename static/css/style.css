@@ -2431,6 +2431,7 @@ body.resume-opened .deebo_fn__cv .cv__bg2 {
     border-radius: 50px;
 }
 
+
 .section_contact .contact_form a:hover {
     border-color: var(--mc);
     color: var(--mc);
@@ -3000,3 +3001,47 @@ body.resume-opened .deebo_fn__cv .cv__bg2 {
         height: inherit;
     }
 }
+
+/*.section_contact .contact_form button {*/
+/*    display: block;*/
+/*    line-height: 26px;*/
+/*    white-space: nowrap;*/
+/*    text-overflow: ellipsis;*/
+/*    overflow: hidden;*/
+/*    padding: 20px 20px;*/
+/*    color: #eee;*/
+/*    font-size: 18px;*/
+/*    font-weight: 600;*/
+/*    text-transform: uppercase;*/
+/*    text-align: center;*/
+/*    text-decoration: none;*/
+/*    border: 2px solid #393939;*/
+/*    border-radius: 50px;*/
+/*}*/
+
+/*.section_contact .contact_form button:hover {*/
+/*    border-color: var(--mc);*/
+/*    color: var(--mc);*/
+/*}*/
+
+/*.section_contact .contact_form button:focus {*/
+/*    outline: 1px dashed #444;*/
+/*}*/
+
+/*.fn__nav button {*/
+/*    display: -webkit-flex;*/
+/*    display: -moz-flex;*/
+/*    display: -ms-flex;*/
+/*    display: -o-flex;*/
+/*    display: flex;*/
+/*    -ms-align-items: center;*/
+/*    align-items: center;*/
+/*    text-decoration: none;*/
+/*    position: relative;*/
+/*    width: 100%;*/
+/*    color: #ddd;*/
+/*    font-size: 14px;*/
+/*    font-weight: 500;*/
+/*    letter-spacing: .5px;*/
+/*    text-transform: uppercase;*/
+/*}*/

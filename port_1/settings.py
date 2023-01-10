@@ -36,8 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home_page',
+    'polls',
     # packages
-    'django_render_partial'
+    'django_render_partial',
+    'sorl.thumbnail'
 ]
 
 MIDDLEWARE = [

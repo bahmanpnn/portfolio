@@ -1,39 +1,17 @@
 {% extends 'shared/base.html' %}
+{% load poll_extras %}
+{% load thumbnail %}
+
 {% block title %}
-    portfolio(dark)
+    portfolio-dark
 {% endblock %}
 {% block content %}
-    {#        <a href="#"><i class="bi bi-moon"></i></a>#}
-
-    {#                <a href="">#}
-    {#                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"#}
-    {#                         fill="currentColor"#}
-    {#                         class="bi bi-sun" viewBox="0 0 16 16">#}
-    {#                        <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>#}
-    {#                    </svg>#}
-    {#                </a>#}
-
-
     <div class="deebo_fn_main">
         <div class="deebo_fn_switcher_wrap">
             <label>
-                <a href="{% url 'home_page_dark' %}"> <img src="/static/svg/sun.svg" alt=""></a>
+                <a href="{% url 'home_page_light' %}"> <img src="/static/svg/sun.svg" alt=""></a>
             </label>
         </div>
-
-        {#                <!-- Light/Dark Switcher -->#}
-        {#                        <div class="deebo_fn_switcher_wrap">#}
-        {#                            <label>#}
-        {#                                <span class="light">Light</span>#}
-        {#                                <span class="checkbox_wrap">#}
-        {#                					<input type="checkbox" id="skin_switcher" checked>#}
-        {#                					<span class="slider round"></span>#}
-        {#                				</span>#}
-        {#                                <span class="dark">Dark</span>#}
-        {#                            </label>#}
-        {#                        </div>#}
-        {#                <!-- /Light/Dark Switcher -->#}
-
 
         <!-- Overlay -->
         <div class="right_bar_overlay"></div>
@@ -110,13 +88,15 @@
                 <div class="cv__header">
                     <div class="in">
                         <div class="avatar">
-                            <img src="{{ user.avatar.url }}" alt="">
+                            {% thumbnail user.avatar '200x200' as bahman %}
+                                <img src="{{ bahman.url }}" alt="">
+                            {% endthumbnail %}
                         </div>
                         <h3><span>{{ user.first_name }}</span> {{ user.last_name }}</h3>
                         <p class="quote">
                             {{ user.about_me }}
                             <a href="#contact" class="anchor">
-                                ارتباط
+                                contacting - hiring
                             </a>
                         </p>
 
@@ -162,6 +142,41 @@
                                 .com">
                                         <img class="fn__svg" src="/static/svg/instagram.svg"
                                              alt="instagram.com"/>
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% if user.whatsapp %}
+                                <li>
+                                    <a href="{{ user.whatsapp }}" target="_blank"
+                                       title="whatsapp.com">
+                                        <img class="fn__svg" src="/static/svg/whatsapp.svg"
+                                             alt="whatsapp.com"/>
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% if user.telegram %}
+                                <li>
+                                    <a href="{{ user.telegram }}" target="_blank"
+                                       title="telegram.com">
+                                        <img class="fn__svg" src="/static/svg/telegram.svg"
+                                             alt="telegram.com"/>
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% if user.skype %}
+                                <li>
+                                    <a href="{{ user.skype }}" target="_blank" title="skype.com">
+                                        <img class="fn__svg" src="/static/svg/skype.svg"
+                                             alt="skype.com"/>
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% if user.linkedin %}
+                                <li>
+                                    <a href="{{ user.linkedin }}" target="_blank"
+                                       title="linkedin.com">
+                                        <img class="fn__svg" src="/static/svg/linkedin.svg"
+                                             alt="linkedin.com"/>
                                     </a>
                                 </li>
                             {% endif %}
@@ -223,15 +238,19 @@
                                         <span>
                                             {% for languege in langueges %}
                                                 {{ languege.title }}
+                                                {% if not forloop.last %}
+                                                    ,
+                                                {% endif %}
                                             {% endfor %}
                                         </span>
                                     </p>
                                 </li>
-                                <li><p>Age: <span>24 Years</span></p></li>
-                                <li><p>Nationality: <span>Iranian</span></p></li>
+                                <li><p>Age: <span>{{ user.birthday.year|age }}
+                                    Years</span></p></li>
+                                <li><p>Nationality: <span>
+                                    {{ user.nationality|capfirst }}</span></p></li>
                                 <li><p>Adress: <span>{{ user.address }}</span></p></li>
-                                <li><p>Phone: <span><a
-                                        href="">{{ user.phone }}</a></span></p>
+                                <li><p>Phone: <span>{{ user.phone }}</span></p>
                                 </li>
                             </ul>
                         </div>
@@ -248,15 +267,16 @@
                             <ul>
                                 {% for degree in degrees %}
                                     <li>
-                                        <div style="direction: rtl" class="item">
+                                        <div class="item">
                                             <div class="item_top">
-                                                <h5 style="direction: rtl">{{ degree.university_name }}</h5>
-                                                <span style="direction: rtl">( {{ degree.education_times }} )</span>
+                                                <h5>{{ degree.university_name }}</h5>
+                                                <span>( {{ degree.education_times }} )</span>
                                             </div>
-                                            <h3 style="direction: rtl">
+                                            <h3>
                                                 {{ degree.education_field }}
+                                                - {{ degree.education_degree }}
                                             </h3>
-                                            <p style="direction: rtl">{{ degree.about_degree }}</p>
+                                            <p>{{ degree.about_degree }}</p>
                                         </div>
                                     </li>
                                 {% endfor %}
@@ -323,9 +343,7 @@
                         <div class="section_title">
                             <h3>Services</h3>
                         </div>
-                        <p>I help ambitious businesses like yours generate more profits by building
-                            awareness, driving web traffic, connecting with customers and growing
-                            overall sales.</p>
+                        <p>I can help my team in these fields</p>
                         <div class="fn_cs_service_list">
                             <ul>
                                 {% for service in services %}
@@ -338,7 +356,8 @@
                                             {% if service.start_price %}
                                                 <div class="item_right">
                                                     <p>Starts from</p>
-                                                    <h3>${{ service.start_price }}</h3>
+                                                    <h3>
+                                                        ${{ service.start_price |seprate_digits }}</h3>
                                                 </div>
                                             {% endif %}
                                         </div>
@@ -360,18 +379,6 @@
                         <!-- Portfolio Shortcode -->
                         <div class="fn_cs_portfolio">
 
-                            <!-- Portfolio Filter -->
-                            {#                            <div class="portfolio_filter">#}
-                            {#                                <ul>#}
-                            {#                                    <li><a href="#" class="current" data-filter="*">All</a></li>#}
-                            {#                                    <li><a href="#" data-filter=".youtube">Youtube</a></li>#}
-                            {#                                    <li><a href="#" data-filter=".vimeo">Vimeo</a></li>#}
-                            {#                                    <li><a href="#" data-filter=".soundcloud">Soundcloud</a></li>#}
-                            {#                                    <li><a href="#" data-filter=".popup">Popup</a></li>#}
-                            {#                                </ul>#}
-                            {#                            </div>#}
-                            <!-- /Portfolio Filter -->
-
 
                             <!-- Portfolio List -->
                             <div class="portfolio_list">
@@ -380,10 +387,10 @@
                                         <li class="youtube grid-item">
                                             <div class="inner">
                                                 <div class="entry">
-                                                    <a
-                                                            href="{{ portfolio.project_url }}">
-                                                        <img src="{{ portfolio.project_image.url }}"
-                                                             alt=""/>
+                                                    <a href="{{ portfolio.project_url }}">
+                                                        {% thumbnail portfolio.project_image '50x50' as bahman %}
+                                                            <img src="{{ bahman.url }}" alt=""/>
+                                                        {% endthumbnail %}
                                                         <div class="main"
                                                              data-bg-img="{{ portfolio.project_image.url }}">
                                                         </div>
@@ -398,20 +405,7 @@
                                     {% endfor %}
                                 </ul>
                             </div>
-                            {#                                    <div class="entry">#}
-                            {#                                        <a class="popup-youtube"#}
-                            {#                                           href="{{ portfolio.project_url }}">#}
-                            {#                                            <img src="{{ portfolio.project_image.url }}"#}
-                            {#                                                 alt=""/>#}
-                            {#                                            <div class="main"#}
-                            {#                                                 data-bg-img="{{ portfolio.project_image.url }}">#}
-                            {#                                            </div>#}
-                            {#                                            <div class="mobile_title">#}
-                            {#                                                <h3>{{ portfolio.project_title }}</h3>#}
-                            {#                                                <span>{{ portfolio.project_source }}</span>#}
-                            {#                                            </div>#}
-                            {#                                        </a>#}
-                            {#                                    </div>#}
+
 
                             <!-- /Portfolio List -->
 
@@ -433,9 +427,14 @@
                                     {% for client in clients %}
                                         <li>
                                             <a href="{{ client.client_site_url }}">
-                                                <img src="{{ client.client_image.url }}"
-                                                     alt="colorlib"/>
+                                                {% thumbnail client.client_image '75x100' as bahman %}
+                                                    <img src="{{ bahman.url }}" alt=""/>
+                                                {% endthumbnail %}
+                                                {#                                                <span style="color: white;">#}
+                                                {#                                                    {{ client.client_name }}#}
+                                                {#                                                </span>#}
                                             </a>
+
                                         </li>
                                     {% endfor %}
                                 </ul>
@@ -451,17 +450,21 @@
                         </div>
                         <form class="contact_form" action="{% url 'home_page_dark' %}"
                               method="post"
-                              autocomplete="off"
-                              data-email="bahmanpn@gmail">
+                              autocomplete="off">
 
                             <!--
                                 Don't remove below code in avoid to work contact form properly.
                                 You can chance dat-success value with your one. It will be used when user will try to contact via contact form and will get success message.
                             -->
-                            <div class="success"
-                                 data-success="Your message has been received, we will contact you soon."></div>
-                            <div class="empty_notice"><span>Please Fill Required Fields!</span>
-                            </div>
+                            {#                            <div class="success"#}
+                            {#                                 data-success="Your message has been received, we will contact you soon.">#}
+                            {##}
+                            {#                            </div>#}
+                            {#                            <div class="empty_notice">#}
+                            {#                                <span>#}
+                            {#                                    Please Fill Required Fields!#}
+                            {#                                </span>#}
+                            {#                            </div>#}
                             <!-- -->
 
                             <div class="items_wrap">
@@ -491,9 +494,10 @@
                                         </div>
                                     </div>
                                     <div class="item">
-                                        {#                                        <button type="submit" id="send_message">Send#}
-                                        {#                                            Message</button>#}
-                                        <a id="send_message" href="#">Send Message</a>
+                                        <button type="submit" id="send_message">Send
+                                            Message
+                                        </button>
+                                        {#                                        <a id="send_message" href="#">Send Message</a>#}
                                     </div>
                                 </div>
                             </div>
