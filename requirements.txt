@@ -1,0 +1,12 @@
+asgiref==3.6.0
+choices==0.1
+da-vinci==0.3.0
+Django==4.1.5
+django-render-partial==0.4
+django-thumbnails==0.7.0
+Pillow==9.4.0
+shortuuid==1.0.11
+sorl-thumbnail==12.9.0
+sqlparse==0.4.3
+thumbnail==1.5
+tzdata==2022.7
