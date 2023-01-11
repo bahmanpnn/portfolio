@@ -1,0 +1,594 @@
+{% extends 'shared/base.html' %}
+{% load poll_extras %}
+{% load thumbnail %}
+
+{% block header_links %}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <meta name="description" content="Deebo">
+    <meta name="author" content="Frenify">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet"/>
+    <!-- /Google Fonts -->
+
+    <!-- Styles -->
+    <link type="text/css" rel="stylesheet" href="/static/css/base.css?ver=4"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/magnific.css?ver=4"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/animated-headlines.css?ver=4"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/style.css?ver=4"/>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="/static/js/modernizr.custom.js"></script> <![endif]-->
+    <!-- /Styles -->
+
+{% endblock %}
+{% block title %}
+    portfolio-light
+{% endblock %}
+{% block content %}
+
+    <body class="light">
+
+    <div class="deebo_fn_main">
+        <div class="deebo_fn_switcher_wrap">
+            <label>
+                <a href="{% url 'home_page_dark' %}"> <img src="/static/svg/moon.svg" alt=""></a>
+            </label>
+        </div>
+
+
+        <!-- Overlay -->
+        <div class="right_bar_overlay"></div>
+        <!--/ Overlay -->
+
+        <!-- MODALBOX -->
+        <div class="deebo_fn_modalbox">
+            <a class="extra_closer" href="#"></a>
+            <div class="box_inner">
+                <a class="closer" href="#"><span></span></a>
+                <div class="modal_content">
+
+                    <div class="modal_in">
+                        <!-- Content comes from JS -->
+                    </div>
+
+                    <div class="fn__nav" data-from="" data-index="">
+                        <a href="#" class="prev">
+                            <span class="text">Prev</span>
+                            <span class="arrow_wrapper"><span class="arrow"></span></span>
+                        </a>
+                        <a href="#" class="next">
+                            <span class="text">Next</span>
+                            <span class="arrow_wrapper"><span class="arrow"></span></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /MODALBOX -->
+
+        <!-- Overlay -->
+        <div class="right_bar_overlay"></div>
+        <!--/ Overlay -->
+
+        <!-- MODALBOX -->
+        <div class="deebo_fn_modalbox">
+            <a class="extra_closer" href="#"></a>
+            <div class="box_inner">
+                <a class="closer" href="#"><span></span></a>
+                <div class="modal_content">
+
+                    <div class="modal_in">
+                        <!-- Content comes from JS -->
+                    </div>
+
+                    <div class="fn__nav" data-from="" data-index="">
+                        <a href="#" class="prev">
+                            <span class="text">Prev</span>
+                            <span class="arrow_wrapper"><span class="arrow"></span></span>
+                        </a>
+                        <a href="#" class="next">
+                            <span class="text">Next</span>
+                            <span class="arrow_wrapper"><span class="arrow"></span></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /MODALBOX -->
+
+        <!-- Modal CV Card -->
+        <div class="deebo_fn_cv">
+
+            <!-- CV Inner -->
+            <div class="deebo_fn__cv">
+
+                <!-- CV Background -->
+                <div class="cv__bg"></div>
+                <div class="cv__bg2"></div>
+                <!-- /CV Background -->
+
+                <!-- CV Left Side -->
+                <div class="cv__header">
+                    <div class="in">
+                        <div class="avatar">
+                            {% thumbnail user.avatar '175x175' crop='center' quality=95 as bahman %}
+                                <img style="border-radius: 3%;" src="{{ bahman.url }}" alt="">
+                            {% endthumbnail %}
+                        </div>
+                        <h3><span>{{ user.first_name }}</span> {{ user.last_name }}</h3>
+                        <p class="quote">
+                            {{ user.about_me }}
+                            <a href="#contact" class="anchor">
+                                contacting - hiring
+                            </a>
+                        </p>
+                        <ul class="contact_info">
+                            <li>
+                                <span class="icon"><img src="/static/svg/location.svg" alt=""
+                                                        class="fn__svg"></span>
+                                <p>{{ user.address }}</p>
+                            </li>
+                            <li>
+                                <span class="icon"><img src="/static/svg/call.svg" alt=""
+                                                        class="fn__svg"></span>
+                                <p>{{ user.phone }}</p>
+                            </li>
+                            <li>
+                                <span class="icon"><img src="/static/svg/message.svg" alt=""
+                                                        class="fn__svg"></span>
+                                <p>{{ user.email }}</p>
+                            </li>
+                        </ul>
+
+                        <ul class="social">
+                            {% if user.twitter %}
+                                <li>
+                                    <a href="{{ user.twitter }}" target="_blank"
+                                       title="twitter.com">
+                                        <img class="fn__svg" src="/static/svg/twitter.svg" alt="twitter
+                                    .com"/>
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% if user.facebook %}
+                                <li>
+                                    <a href="{{ user.facebook }}" target="_blank" title="facebook
+                                    .com">
+                                        <img class="fn__svg" src="/static/svg/facebook-logo.svg"
+                                             alt="facebook.com"/>
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% if user.instagram %}
+                                <li>
+                                    <a href="{{ user.instagram }}" target="_blank" title="instagram
+                                .com">
+                                        <img class="fn__svg" src="/static/svg/instagram.svg"
+                                             alt="instagram.com"/>
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% if user.whatsapp %}
+                                <li>
+                                    <a href="{{ user.whatsapp }}" target="_blank"
+                                       title="whatsapp.com">
+                                        <img class="fn__svg" src="/static/svg/whatsapp.svg"
+                                             alt="whatsapp.com"/>
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% if user.telegram %}
+                                <li>
+                                    <a href="{{ user.telegram }}" target="_blank"
+                                       title="telegram.com">
+                                        <img class="fn__svg" src="/static/svg/telegram.svg"
+                                             alt="telegram.com"/>
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% if user.skype %}
+                                <li>
+                                    <a href="{{ user.skype }}" target="_blank" title="skype.com">
+                                        <img class="fn__svg" src="/static/svg/skype.svg"
+                                             alt="skype.com"/>
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% if user.linkedin %}
+                                <li>
+                                    <a href="{{ user.linkedin }}" target="_blank"
+                                       title="linkedin.com">
+                                        <img class="fn__svg" src="/static/svg/linkedin.svg"
+                                             alt="linkedin.com"/>
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% if user.github %}
+                                <li>
+                                    <a href="{{ user.github }}" target="_blank"
+                                       title="github.com">
+                                        <img class="fn__svg" src="/static/svg/github.svg"
+                                             alt="github.com"/>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+                <!-- /CV Left Side -->
+
+                <!-- /CV Content Side -->
+                <div class="cv__content">
+
+                    <section id="hero-header" class="section_header">
+                        <div class="content">
+                            <div class="left_hero_header">
+                                <div class="circle">
+                                    <div class="bg_img"
+                                         data-bg-img="{{ user.avatar.url }}"></div>
+                                    <img src="/static/img/thumb/square.jpg" alt=""/>
+                                    <div class="circle_holder_blue"><span></span></div>
+                                    <div class="circle_holder_orange"><span></span></div>
+                                    <div class="lines">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="right_hero_header">
+                                <div class="my_self">
+                                    <h4>Hello! I'm a</h4>
+                                    <h2>
+                                        <!-- It is animation title. You can change animation variation by changing extra class to one of next classes: zoom, rotate-1, letters type, letters rotate-2, loading-bar, slide, clip, letters rotate-3, letters scale, push. cd-headline class can not be removed.  -->
+                                        <span class="cd-headline clip">
+										<span class="cd-words-wrapper" style="font-size: xx-large">
+										  <b class="is-visible">Django Developer</b>
+										  <b>Backend Developer</b>
+										  <b>Freelancer</b>
+										</span>
+									</span>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    <!-- CV: Biography Section -->
+                    <section id="cv_biography">
+                        <div class="section_title">
+                            <h3>Biography</h3>
+                        </div>
+                        <p>{{ user.biography }}</p>
+                        <div class="fn_cs_info_items">
+                            <ul>
+                                <li><p>Name: <span>{{ user.fullname }}</span></p></li>
+                                <li><p>Birthday: <span>{{ user.birthday }}</span></p></li>
+                                <li>
+                                    <p>Languages:
+                                        <span>
+                                            {% for languege in langueges %}
+                                                {{ languege.title }}({{ languege.grade }})
+                                                {% if not forloop.last %}
+                                                    ,
+                                                {% endif %}
+                                            {% endfor %}
+                                        </span>
+                                    </p>
+                                </li>
+                                <li><p>Age: <span>{{ user.birthday.year|age }}
+                                    Years</span></p></li>
+                                <li><p>Nationality: <span>
+                                    {{ user.nationality|capfirst }}</span></p></li>
+                                <li><p>Adress: <span>{{ user.address }}</span></p></li>
+                            </ul>
+                        </div>
+                    </section>
+                    <!-- /CV: Biography Section -->
+
+
+                    <!-- CV: Education Section -->
+                    <section id="cv_education">
+                        <div class="section_title">
+                            <h3>Education</h3>
+                        </div>
+                        <div class="fn_cs_boxed_list">
+                            <ul>
+                                {% for degree in degrees %}
+                                    <li>
+                                        <div class="item">
+                                            <div class="item_top">
+                                                <h5>{{ degree.university_name }}</h5>
+                                                <span>( {{ degree.education_times }} )</span>
+                                            </div>
+                                            <h3>
+                                                {{ degree.education_field }}
+                                                - {{ degree.education_degree }}
+                                            </h3>
+
+                                            <p>{{ degree.about_degree }}</p>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </section>
+                    <!-- /CV: Education Section -->
+
+
+                    <!-- CV: Experience Section -->
+                    {% if experiences %}
+                        <section id="cv_experience">
+                            <div class="section_title">
+                                <h3>Experience</h3>
+                            </div>
+                            <div class="fn_cs_boxed_list">
+                                <ul>
+                                    {% for experience in experiences %}
+                                        <li>
+                                            <div class="item">
+                                                <div class="item_top">
+                                                    <h5>{{ experience.office_name }}</h5>
+                                                    <span>( {{ experience.work_times }} )</span>
+                                                </div>
+                                                <h3>{{ experience.work_field }}</h3>
+                                                <p>{{ experience.about_office }}</p>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+
+
+                                </ul>
+                            </div>
+                        </section>
+                    {% endif %}
+                    <!-- /CV: Experience Section -->
+
+
+                    <!-- CV: Skills Section -->
+                    <section id="cv_skills">
+                        <div class="section_title">
+                            <h3>Professionality</h3>
+                        </div>
+                        <div class="fn_cs_progress_bar">
+                            {% for skill in skills %}
+                                <div class="progress_item"
+                                     data-value="{{ skill.knowledge_percent_skill }}">
+                                    <div class="item_in">
+                                        <h3 class="progress_title">{{ skill.skill_name|upper }}</h3>
+                                        <span class="progress_percent"></span>
+                                        <div class="progress_bg"></div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+
+                        </div>
+                    </section>
+                    <!-- /CV: Skills Section -->
+
+
+                    <!-- CV: Services Section -->
+                    <section id="cv_services">
+                        <div class="section_title">
+                            <h3>Services</h3>
+                        </div>
+                        <p>I can help my team in these fields</p>
+                        <div class="fn_cs_service_list">
+                            <ul>
+                                {% for service in services %}
+                                    <li>
+                                        <div class="item">
+                                            <div class="item_left">
+                                                <h3>{{ service.service_title }}</h3>
+                                                <p>{{ service.about_service }}</p>
+                                            </div>
+                                            {% if service.start_price %}
+                                                <div class="item_right">
+                                                    <p>Starts from</p>
+                                                    <h3>
+                                                        ${{ service.start_price |seprate_digits }}</h3>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </li>
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+                    </section>
+                    <!-- /CV: Services Section -->
+
+
+                    <!-- CV: Portfolio Section-->
+                    <section id="cv_portfolio">
+                        <div class="section_title">
+                            <h3>Portfolio</h3>
+                        </div>
+
+                        <!-- Portfolio Shortcode -->
+                        <div class="fn_cs_portfolio">
+
+                            <!-- Portfolio Filter -->
+                            {#                            <div class="portfolio_filter">#}
+                            {#                                <ul>#}
+                            {#                                    <li><a href="#" class="current" data-filter="*">All</a></li>#}
+                            {#                                    <li><a href="#" data-filter=".youtube">Youtube</a></li>#}
+                            {#                                    <li><a href="#" data-filter=".vimeo">Vimeo</a></li>#}
+                            {#                                    <li><a href="#" data-filter=".soundcloud">Soundcloud</a></li>#}
+                            {#                                    <li><a href="#" data-filter=".popup">Popup</a></li>#}
+                            {#                                </ul>#}
+                            {#                            </div>#}
+                            <!-- /Portfolio Filter -->
+
+
+                            <!-- Portfolio List -->
+                            <div class="portfolio_list">
+                                <ul class="gallery_zoom grid">
+                                    {% for portfolio in portfolios %}
+                                        <li class="youtube grid-item">
+                                            <div class="inner">
+                                                <div class="entry" style="border:3px solid
+                                                #a8a4a4;">
+                                                    <a href="{{ portfolio.project_url }}">
+                                                        {% thumbnail portfolio.project_image '85x85' crop='center' as bahman %}
+                                                            <img src="{{ bahman.url }}" alt=""/>
+                                                        {% endthumbnail %}
+                                                        <div class="main"
+                                                             data-bg-img="{{ portfolio.project_image.url }}">
+                                                        </div>
+                                                        <div class="mobile_title">
+                                                            <h3>{{ portfolio.project_title }}</h3>
+                                                            <span>{{ portfolio.project_source }}</span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            {#                                    <div class="entry">#}
+                            {#                                        <a class="popup-youtube"#}
+                            {#                                           href="{{ portfolio.project_url }}">#}
+                            {#                                            <img src="{{ portfolio.project_image.url }}"#}
+                            {#                                                 alt=""/>#}
+                            {#                                            <div class="main"#}
+                            {#                                                 data-bg-img="{{ portfolio.project_image.url }}">#}
+                            {#                                            </div>#}
+                            {#                                            <div class="mobile_title">#}
+                            {#                                                <h3>{{ portfolio.project_title }}</h3>#}
+                            {#                                                <span>{{ portfolio.project_source }}</span>#}
+                            {#                                            </div>#}
+                            {#                                        </a>#}
+                            {#                                    </div>#}
+
+                            <!-- /Portfolio List -->
+
+                        </div>
+                        <!-- /Portfolio Shortcode -->
+
+                    </section>
+                    <!-- /CV: Portfolio Section-->
+
+
+                    <!-- CV: Clients Section -->
+                    {% if clients %}
+                        <section id="clients" class="section_clients">
+                            <div class="section_title">
+                                <h3>Clients</h3>
+                            </div>
+                            <div class="clients_wrapper">
+                                <ul>
+                                    {% for client in clients %}
+                                        <li>
+                                            <a href="{{ client.client_site_url }}">
+                                                {% thumbnail client.client_image '75x100' as bahman %}
+                                                    <img src="{{ bahman.url }}" alt=""/>
+                                                {% endthumbnail %}
+                                                {#                                                <span style="color: white;">#}
+                                                {#                                                    {{ client.client_name }}#}
+                                                {#                                                </span>#}
+                                            </a>
+
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </section>
+                    {% endif %}
+                    <!-- /CV: Clients Section -->
+
+
+                    <section id="contact" class="section_contact">
+                        <div class="section_title">
+                            <h3>Contact Me</h3>
+                        </div>
+                        <form class="contact_form" action="{% url 'home_page_light' %}"
+                              method="post"
+                              autocomplete="off">
+                            {% csrf_token %}
+
+                            <!--
+                                Don't remove below code in avoid to work contact form properly.
+                                You can chance dat-success value with your one. It will be used when user will try to contact via contact form and will get success message.
+                            -->
+                            {#                            <div class="success"#}
+                            {#                                 data-success="Your message has been received, we will contact you soon.">#}
+                            {##}
+                            {#                            </div>#}
+                            {#                            <div class="empty_notice">#}
+                            {#                                <span>#}
+                            {#                                    Please Fill Required Fields!#}
+                            {#                                </span>#}
+                            {#                            </div>#}
+                            <!-- -->
+
+                            <div class="items_wrap">
+                                <div class="items">
+                                    <div class="item half">
+                                        <div class="input_wrapper">
+                                            {{ form.name }}
+                                            {{ form.name.errors }}
+                                        </div>
+                                    </div>
+                                    <div class="item half">
+                                        <div class="input_wrapper">
+                                            {{ form.email }}
+                                            {{ form.email.errors }}
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="input_wrapper">
+                                            {{ form.phone }}
+                                            {{ form.phone.errors }}
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="input_wrapper">
+                                            {{ form.text }}
+                                            {{ form.text.errors }}
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <button type="submit" id="send__message_light"  >Send
+                                            Message
+                                        </button>
+                                        {#                                        <a id="send_message" href="#">Send Message</a>#}
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+
+
+                </div>
+                <!-- /CV Content Side -->
+
+            </div>
+            <!-- CV Inner -->
+        </div>
+        <!-- /Modal CV Card -->
+
+
+    </div>
+    </body>
+{% endblock %}
+{% block footer_links %}
+    <!-- Scripts -->
+    <script type="text/javascript" src="/static/js/jquery.js?ver=4"></script>
+    <script type="text/javascript" src="/static/js/isotope.js"></script>
+    <script type="text/javascript" src="/static/js/magnific.js"></script>
+    <script type="text/javascript" src="/static/js/animated-headlines.js?ver=4"></script>
+    <script type="text/javascript" src="/static/js/waypoints.js?ver=4"></script>
+    <!--[if lt IE 10]>
+    <script type="text/javascript" src="/static/js/ie8.js"></script> <![endif]-->
+    <script type="text/javascript" src="/static/js/init.js?ver=4"></script>
+{% endblock %}
