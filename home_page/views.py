@@ -17,7 +17,7 @@ class IndexPage(View):
         experiences = Experiences.objects.all()
         langueges = Langueges.objects.all()
         portfolios = Portfolio.objects.all()
-        skills = Skills.objects.all()
+        skills = Skills.objects.order_by('-knowledge_percent_skill')
         services = Services.objects.all()
         user = User.objects.all().first()
         context = {
@@ -60,7 +60,7 @@ class IndexPageLight(View):
         experiences = Experiences.objects.all()
         langueges = Langueges.objects.all()
         portfolios = Portfolio.objects.all()
-        skills = Skills.objects.all()
+        skills = Skills.objects.order_by('-knowledge_percent_skill')
         services = Services.objects.all()
         user = User.objects.all().first()
         context = {

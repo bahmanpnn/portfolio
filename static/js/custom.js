@@ -1,7 +1,9 @@
-var element = document.getElementById('send__message')
+var element = document.getElementById('send__message_light')
 element.style.cssText = "line-height: 26px;padding: 20px;border-radius: 50px;align-items: center;" +
     "width: 100%;font-size: 14px;letter-spacing: 0.5px;text-transform: uppercase;" +
     "font-family:'sans-serif';"
+
+
 
 // var element2 = document.getElementById('send__message_dark')
 // element2.style.cssText = "line-height: 26px;padding: 20px;border-radius: 50px;align-items:center;width: 100%;font-size: 14px;letter-spacing: 0.5px;text-transform: uppercase;"

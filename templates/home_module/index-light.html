@@ -362,7 +362,7 @@
                                 <div class="progress_item"
                                      data-value="{{ skill.knowledge_percent_skill }}">
                                     <div class="item_in">
-                                        <h3 class="progress_title">{{ skill.skill_name }}</h3>
+                                        <h3 class="progress_title">{{ skill.skill_name|upper }}</h3>
                                         <span class="progress_percent"></span>
                                         <div class="progress_bg"></div>
                                     </div>
@@ -558,7 +558,7 @@
                                         </div>
                                     </div>
                                     <div class="item">
-                                        <button type="submit" id="send__message">Send
+                                        <button type="submit" id="send__message_light"  >Send
                                             Message
                                         </button>
                                         {#                                        <a id="send_message" href="#">Send Message</a>#}
