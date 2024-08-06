@@ -20,7 +20,7 @@ class Contact(models.Model):
 class Langueges(models.Model):
     list_choices = (
         ('elementry', 'elementry'),
-        ('midLevel', 'midLevel'),
+        ('intermediate', 'intermediate'),
         ('professional', 'professional'),
         ('native', 'native')
     )
